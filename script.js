@@ -26,6 +26,16 @@ function brandImage(brand) {
   return `https://picsum.photos/seed/${brand.seed}/600/1020`;
 }
 
+function brandGalleryImages(brand) {
+  // Replace with your own photos per brand, e.g. images/<slug>/1.jpg ... 4.jpg
+  return [
+    brandImage(brand),
+    `https://picsum.photos/seed/${brand.seed}-2/600/1020`,
+    `https://picsum.photos/seed/${brand.seed}-3/600/1020`,
+    `https://picsum.photos/seed/${brand.seed}-4/600/1020`,
+  ];
+}
+
 // ---- Tile grid (homepage + brands page) ----
 const tileGrid = document.getElementById("tileGrid");
 if (tileGrid) {
@@ -65,11 +75,77 @@ function currentBrand() {
 
 function fillBrand(brand) {
   document.getElementById("brandTitle").textContent = brand.name;
-  document.getElementById("brandImage").style.backgroundImage = `url('${brandImage(brand)}')`;
   document.getElementById("brandList").innerHTML = BRANDS.map(
     (b) =>
       `<a href="#${b.slug}" class="${b.slug === brand.slug ? "current" : ""}">${b.name}</a>`
   ).join("");
+  setupGallery(brand);
+}
+
+// ---- Brand photo gallery (arrows + thumbnail row) ----
+let galleryImages = [];
+let galleryIndex = 0;
+
+function setGalleryImage(i, fade) {
+  const main = document.getElementById("brandImage");
+  galleryIndex = (i + galleryImages.length) % galleryImages.length;
+
+  const swap = () => {
+    main.style.backgroundImage = `url('${galleryImages[galleryIndex]}')`;
+    main.classList.remove("img-fading");
+  };
+  if (fade) {
+    main.classList.add("img-fading");
+    setTimeout(swap, 150);
+  } else {
+    swap();
+  }
+
+  document.querySelectorAll("#galleryThumbs .thumb").forEach((t, ti) => {
+    t.classList.toggle("active", ti === galleryIndex);
+  });
+}
+
+function setupGallery(brand) {
+  galleryImages = brandGalleryImages(brand);
+  const thumbs = document.getElementById("galleryThumbs");
+  thumbs.innerHTML = galleryImages
+    .map(
+      (src, i) =>
+        `<button class="thumb" style="background-image: url('${src}')" aria-label="Image ${i + 1}"></button>`
+    )
+    .join("");
+  thumbs.querySelectorAll(".thumb").forEach((t, i) => {
+    t.addEventListener("click", () => setGalleryImage(i, true));
+  });
+  setGalleryImage(0, false);
+}
+
+const galleryPrev = document.getElementById("galleryPrev");
+const galleryNext = document.getElementById("galleryNext");
+
+if (galleryPrev && galleryNext) {
+  galleryPrev.addEventListener("click", () => setGalleryImage(galleryIndex - 1, true));
+  galleryNext.addEventListener("click", () => setGalleryImage(galleryIndex + 1, true));
+
+  document.addEventListener("keydown", (e) => {
+    if (!viewBrand || viewBrand.hidden) return;
+    if (e.key === "ArrowLeft") setGalleryImage(galleryIndex - 1, true);
+    if (e.key === "ArrowRight") setGalleryImage(galleryIndex + 1, true);
+  });
+
+  // Swipe on touch screens
+  const galleryMain = document.querySelector(".gallery-main");
+  let touchX = null;
+  galleryMain.addEventListener("touchstart", (e) => {
+    touchX = e.touches[0].clientX;
+  }, { passive: true });
+  galleryMain.addEventListener("touchend", (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) setGalleryImage(galleryIndex + (dx < 0 ? 1 : -1), true);
+    touchX = null;
+  }, { passive: true });
 }
 
 function applyRoute(fade) {
