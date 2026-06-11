@@ -109,6 +109,7 @@ function setGalleryImage(i, fade) {
 function setupGallery(brand) {
   galleryImages = brandGalleryImages(brand);
   const thumbs = document.getElementById("galleryThumbs");
+  if (!thumbs || !document.getElementById("brandImage")) return; // stale cached HTML without gallery markup
   thumbs.innerHTML = galleryImages
     .map(
       (src, i) =>
