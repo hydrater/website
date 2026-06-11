@@ -1,0 +1,613 @@
+/* =====================================================
+   Showroom — minimal tile-grid layout
+   ===================================================== */
+
+:root {
+  --ink: #111111;
+  --paper: #ffffff;
+  --gray: #888888;
+  --gray-light: #e5e5e5;
+  --header-h: 55px;
+  --container: 1140px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Outfit ~ free stand-in for the reference's GT-Walsheim */
+  font-family: "Outfit", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  padding-top: var(--header-h); /* clear the fixed header */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ---------- Fixed header ---------- */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--header-h);
+  background: var(--paper);
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.site-header .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 0.95rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  /* Swap for an image wordmark:
+     <img src="images/logo.png" height="30" alt="..."> */
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.75);
+  transition: color 0.2s;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+/* Hamburger (mobile) */
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 28px;
+  height: 22px;
+  position: relative;
+}
+
+.menu-toggle span,
+.menu-toggle span::before,
+.menu-toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+}
+
+.menu-toggle span {
+  top: 10px;
+}
+
+.menu-toggle span::before {
+  top: -8px;
+}
+
+.menu-toggle span::after {
+  top: 8px;
+}
+
+/* Right slide-in sidebar (mobile nav) */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1100;
+  width: min(20rem, 85vw);
+  background: var(--paper);
+  border-left: 1px solid var(--gray-light);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  padding-top: var(--header-h);
+  overflow-y: auto;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar a {
+  display: block;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.85rem;
+}
+
+.sidebar a.level-2 {
+  padding-left: 2.75rem;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.sidebar .group-label {
+  padding: 1.2rem 1.5rem 0.4rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.sidebar-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- Tile grid ---------- */
+
+.tile-grid {
+  padding-top: 3rem;
+  padding-left: 0;  /* tiles sit flush with the 1140px container; item margins create the edge gap */
+  padding-right: 0;
+}
+
+.tile-grid .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tile-col {
+  width: 100%;
+}
+
+.collection-item {
+  margin: 0; /* full-bleed stacked tiles on phones */
+}
+
+.image-wrap {
+  position: relative;
+  background: #000;
+}
+
+.background-box {
+  display: block;
+  width: 100%;
+  padding-top: 170%; /* 10:17 portrait ratio */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  transition: opacity 0.15s linear;
+}
+
+.caption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 0 0.5rem;
+  transition: opacity 0.15s linear;
+}
+
+.image-wrap:hover .background-box {
+  opacity: 0.2;
+}
+
+/* ---------- Instagram line ---------- */
+
+.insta-line {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin: 2.5rem 0;
+}
+
+.insta-line a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Footer (black, expandable) ---------- */
+
+.site-footer {
+  background: #000;
+  color: #fff;
+  padding: 1rem 0 1.5rem;
+}
+
+.footer-toggle {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  padding: 0.75rem 0;
+}
+
+.footer-toggle .arrow {
+  display: inline-block;
+  margin-left: 0.5rem;
+  transition: transform 0.3s;
+  transform: rotate(90deg);
+  font-size: 0.7rem;
+}
+
+.site-footer.open .footer-toggle .arrow {
+  transform: rotate(-90deg);
+}
+
+.footer-detail {
+  display: none;
+}
+
+.site-footer.open .footer-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  padding-top: 1.5rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.footer-nav.right {
+  align-items: flex-end;
+}
+
+.footer-nav a {
+  padding: 0.3rem 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer-center {
+  text-align: center;
+}
+
+.footer-center p {
+  margin: 1rem 0;
+}
+
+.footer-center .small {
+  font-size: 0.75rem;
+}
+
+.footer-center .wordmark {
+  font-size: 1rem;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  font-size: 0.85rem;
+  color: #fff;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ---------- View cross-fade (grid <-> brand) ---------- */
+
+.view {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.view.fading {
+  opacity: 0;
+}
+
+main {
+  animation: page-fade 0.4s ease;
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------- Brand detail page ---------- */
+
+.brand-page {
+  display: flex;
+  gap: 0;
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+  min-height: 60vh;
+}
+
+.brand-list-col {
+  width: 16.6667%;
+  flex-shrink: 0;
+  padding-right: 1rem;
+}
+
+.brand-list-title {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.brand-list a {
+  display: block;
+  padding: 0.35rem 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.brand-list a:hover {
+  color: var(--ink);
+}
+
+.brand-list a.current {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.brand-main {
+  flex: 1;
+  display: flex;
+  gap: 2rem;
+}
+
+.brand-text {
+  width: 66.6667%;
+}
+
+.collection-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 4rem;
+}
+
+.rte {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #1a1a1a;
+}
+
+.rte p {
+  margin-bottom: 1.5rem;
+}
+
+.rte-link {
+  padding-top: 2.5rem;
+}
+
+.rte-link a {
+  text-decoration: underline;
+}
+
+.rte .countries {
+  padding-top: 1.5rem;
+}
+
+.rte strong {
+  font-weight: 700;
+}
+
+.brand-image {
+  width: 33.3333%;
+}
+
+.brand-image .background-box {
+  padding-top: 170%;
+}
+
+@media (max-width: 767.98px) {
+  .brand-page {
+    flex-direction: column;
+  }
+
+  .brand-list-col,
+  .brand-text,
+  .brand-image {
+    width: 100%;
+  }
+
+  .brand-main {
+    flex-direction: column;
+  }
+
+  .brand-list {
+    display: none; /* on phones the brand menu lives in the slide-in sidebar */
+  }
+
+  .brand-list-title {
+    display: none;
+  }
+}
+
+/* ---------- Simple inner-page content ---------- */
+
+.page-content {
+  padding: 3rem 0 4rem;
+  max-width: 42rem;
+}
+
+.page-content h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.page-content h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 2rem 0 0.75rem;
+}
+
+.page-content p {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* ---------- Dates list ---------- */
+
+.date-row {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.date-row time {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+}
+
+.date-row h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.date-row .where {
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+/* ---------- Breakpoints (match Bootstrap sm/md/lg) ---------- */
+
+@media (min-width: 576px) {
+  .tile-col {
+    width: 50%;
+  }
+
+  .collection-item {
+    margin: 0.65rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .tile-col {
+    width: 33.3333%;
+  }
+
+  .collection-item {
+    margin: 1.33rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .collection-item {
+    margin: 2rem; /* 64px gaps between tiles, matching reference */
+  }
+}
+
+@media (max-width: 767.98px) {
+  .nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .site-footer.open .footer-detail {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-nav,
+  .footer-nav.right {
+    align-items: center;
+  }
+}
