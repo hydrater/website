@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +13,17 @@
   <header class="site-header">
     <div class="container">
       <a class="logo" href="index.html">Studio Name</a>
-      <nav class="nav">
-        <a href="about.html">We Are</a>
-        <a href="dates.html">Dates</a>
-        <a href="brands.html" class="active">Brands</a>
-      </nav>
+      <div class="header-right">
+        <nav class="nav">
+          <a href="about.html" data-i18n="nav.weare">Über uns</a>
+          <a href="dates.html" data-i18n="nav.dates">Termine</a>
+          <a href="brands.html" class="active" data-i18n="nav.brands">Marken</a>
+        </nav>
+        <div class="lang-switch">
+          <button type="button" data-lang="de">DE</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
     </div>
   </header>
@@ -25,9 +31,13 @@
   <div class="backdrop" id="backdrop"></div>
   <aside class="sidebar" id="sidebar">
     <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">&times;</button>
-    <a href="about.html">We Are</a>
-    <a href="dates.html">Dates</a>
-    <a href="brands.html">Brands</a>
+    <a href="about.html" data-i18n="nav.weare">Über uns</a>
+    <a href="dates.html" data-i18n="nav.dates">Termine</a>
+    <a href="brands.html" data-i18n="nav.brands">Marken</a>
+    <div class="lang-switch sidebar-lang">
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
     <div id="sidebarBrands"></div>
   </aside>
 
@@ -37,7 +47,7 @@
         <div class="row" id="tileGrid"></div>
 
         <p class="insta-line">
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener">Follow Us On Instagram</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" data-i18n="insta.line">Folgt uns auf Instagram</a>
         </p>
       </div>
     </div>
@@ -45,7 +55,7 @@
     <div class="view" id="viewBrand" hidden>
       <div class="container brand-page">
         <aside class="brand-list-col">
-          <a class="brand-list-title" href="#">Brands</a>
+          <a class="brand-list-title" href="#" data-i18n="nav.brands">Marken</a>
           <nav class="brand-list" id="brandList"></nav>
         </aside>
 
@@ -53,9 +63,9 @@
           <div class="brand-text">
             <h1 class="collection-title" id="brandTitle">Brand</h1>
             <div class="rte">
-              <p>Placeholder copy. Introduce the brand here &mdash; its founder, the year it started, and the idea behind it. Two or three sentences set the tone before going into detail.</p>
-              <p>Placeholder copy. Describe the collections: the materials, the categories, the design signature that makes the brand recognizable, and where the pieces are produced.</p>
-              <p>Placeholder copy. Close with a line about who the brand is for and why it belongs in the showroom selection.</p>
+              <p data-i18n="brand.p1">Platzhaltertext. Stellen Sie hier die Marke vor – ihre Gründerin oder ihren Gründer, das Gründungsjahr und die Idee dahinter. Zwei, drei Sätze geben den Ton an, bevor es ins Detail geht.</p>
+              <p data-i18n="brand.p2">Platzhaltertext. Beschreiben Sie die Kollektionen: die Materialien, die Kategorien, die gestalterische Handschrift, die die Marke unverwechselbar macht, und wo die Stücke gefertigt werden.</p>
+              <p data-i18n="brand.p3">Platzhaltertext. Schließen Sie mit einem Satz darüber, für wen die Marke gedacht ist und warum sie in die Auswahl des Showrooms gehört.</p>
               <p class="rte-link"><a href="#">www.example.com</a></p>
               <p class="countries"><strong>COUNTRY / COUNTRY / COUNTRY</strong></p>
             </div>
@@ -78,13 +88,13 @@
   <footer class="site-footer" id="siteFooter">
     <div class="container">
       <button class="footer-toggle" id="footerToggle" aria-expanded="false">
-        Contact us <span class="arrow">&#10095;</span>
+        <span data-i18n="footer.contact">Kontakt</span> <span class="arrow">&#10095;</span>
       </button>
       <div class="footer-detail">
         <nav class="footer-nav">
-          <a href="#">Imprint</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms &amp; Conditions</a>
+          <a href="#" data-i18n="footer.imprint">Impressum</a>
+          <a href="#" data-i18n="footer.privacy">Datenschutz</a>
+          <a href="#" data-i18n="footer.terms">AGB</a>
         </nav>
         <div class="footer-center">
           <p><a href="tel:+0000000000" class="btn-outline">+00 000 000 0000</a></p>

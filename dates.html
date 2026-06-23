@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +13,17 @@
   <header class="site-header">
     <div class="container">
       <a class="logo" href="index.html">Studio Name</a>
-      <nav class="nav">
-        <a href="about.html">We Are</a>
-        <a href="dates.html" class="active">Dates</a>
-        <a href="brands.html">Brands</a>
-      </nav>
+      <div class="header-right">
+        <nav class="nav">
+          <a href="about.html" data-i18n="nav.weare">Über uns</a>
+          <a href="dates.html" class="active" data-i18n="nav.dates">Termine</a>
+          <a href="brands.html" data-i18n="nav.brands">Marken</a>
+        </nav>
+        <div class="lang-switch">
+          <button type="button" data-lang="de">DE</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
     </div>
   </header>
@@ -25,45 +31,49 @@
   <div class="backdrop" id="backdrop"></div>
   <aside class="sidebar" id="sidebar">
     <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">&times;</button>
-    <a href="about.html">We Are</a>
-    <a href="dates.html">Dates</a>
-    <a href="brands.html">Brands</a>
+    <a href="about.html" data-i18n="nav.weare">Über uns</a>
+    <a href="dates.html" data-i18n="nav.dates">Termine</a>
+    <a href="brands.html" data-i18n="nav.brands">Marken</a>
+    <div class="lang-switch sidebar-lang">
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
     <div id="sidebarBrands"></div>
   </aside>
 
   <main>
     <div class="container page-content">
-      <h1>Dates</h1>
+      <h1 data-i18n="nav.dates">Termine</h1>
 
       <div class="date-row">
-        <time datetime="2026-06-22">22–26 Jun 2026</time>
+        <time datetime="2026-06-22" data-i18n="dates.d1.time">22.–26. Jun 2026</time>
         <div>
-          <h3>Spring/Summer 27 — Pre-Collection</h3>
-          <span class="where">Showroom — By appointment</span>
+          <h3 data-i18n="dates.d1.title">Frühjahr/Sommer 27 — Pre-Collection</h3>
+          <span class="where" data-i18n="where.appointment">Showroom — Nach Vereinbarung</span>
         </div>
       </div>
 
       <div class="date-row">
-        <time datetime="2026-07-06">06–10 Jul 2026</time>
+        <time datetime="2026-07-06" data-i18n="dates.d2.time">06.–10. Jul 2026</time>
         <div>
-          <h3>Spring/Summer 27 — Menswear</h3>
-          <span class="where">Showroom — By appointment</span>
+          <h3 data-i18n="dates.d2.title">Frühjahr/Sommer 27 — Herrenmode</h3>
+          <span class="where" data-i18n="where.appointment">Showroom — Nach Vereinbarung</span>
         </div>
       </div>
 
       <div class="date-row">
-        <time datetime="2026-09-14">14–18 Sep 2026</time>
+        <time datetime="2026-09-14" data-i18n="dates.d3.time">14.–18. Sep 2026</time>
         <div>
-          <h3>Spring/Summer 27 — Main Collection</h3>
-          <span class="where">Showroom — By appointment</span>
+          <h3 data-i18n="dates.d3.title">Frühjahr/Sommer 27 — Hauptkollektion</h3>
+          <span class="where" data-i18n="where.appointment">Showroom — Nach Vereinbarung</span>
         </div>
       </div>
 
       <div class="date-row">
-        <time datetime="2026-10-05">05–09 Oct 2026</time>
+        <time datetime="2026-10-05" data-i18n="dates.d4.time">05.–09. Okt 2026</time>
         <div>
-          <h3>Spring/Summer 27 — Accessories</h3>
-          <span class="where">Off-site — Details on request</span>
+          <h3 data-i18n="dates.d4.title">Frühjahr/Sommer 27 — Accessoires</h3>
+          <span class="where" data-i18n="where.offsite">Extern — Details auf Anfrage</span>
         </div>
       </div>
     </div>
@@ -72,13 +82,13 @@
   <footer class="site-footer" id="siteFooter">
     <div class="container">
       <button class="footer-toggle" id="footerToggle" aria-expanded="false">
-        Contact us <span class="arrow">&#10095;</span>
+        <span data-i18n="footer.contact">Kontakt</span> <span class="arrow">&#10095;</span>
       </button>
       <div class="footer-detail">
         <nav class="footer-nav">
-          <a href="#">Imprint</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms &amp; Conditions</a>
+          <a href="#" data-i18n="footer.imprint">Impressum</a>
+          <a href="#" data-i18n="footer.privacy">Datenschutz</a>
+          <a href="#" data-i18n="footer.terms">AGB</a>
         </nav>
         <div class="footer-center">
           <p><a href="tel:+0000000000" class="btn-outline">+00 000 000 0000</a></p>

@@ -220,3 +220,90 @@ if (siteFooter && footerToggle) {
     if (open) siteFooter.scrollIntoView({ behavior: "smooth", block: "end" });
   });
 }
+
+// ---- Language toggle (DE default / EN) ----
+// Static page text is written in German; this dictionary swaps it to English
+// when EN is chosen. The choice is shared across all pages via localStorage.
+const I18N = {
+  "nav.weare":  { de: "Über uns", en: "We Are" },
+  "nav.dates":  { de: "Termine",  en: "Dates" },
+  "nav.brands": { de: "Marken",   en: "Brands" },
+
+  "footer.contact": { de: "Kontakt",     en: "Contact us" },
+  "footer.imprint": { de: "Impressum",   en: "Imprint" },
+  "footer.privacy": { de: "Datenschutz", en: "Privacy Policy" },
+  "footer.terms":   { de: "AGB",         en: "Terms & Conditions" },
+
+  "insta.line": { de: "Folgt uns auf Instagram", en: "Follow Us On Instagram" },
+
+  "brand.p1": {
+    de: "Platzhaltertext. Stellen Sie hier die Marke vor – ihre Gründerin oder ihren Gründer, das Gründungsjahr und die Idee dahinter. Zwei, drei Sätze geben den Ton an, bevor es ins Detail geht.",
+    en: "Placeholder copy. Introduce the brand here — its founder, the year it started, and the idea behind it. Two or three sentences set the tone before going into detail.",
+  },
+  "brand.p2": {
+    de: "Platzhaltertext. Beschreiben Sie die Kollektionen: die Materialien, die Kategorien, die gestalterische Handschrift, die die Marke unverwechselbar macht, und wo die Stücke gefertigt werden.",
+    en: "Placeholder copy. Describe the collections: the materials, the categories, the design signature that makes the brand recognizable, and where the pieces are produced.",
+  },
+  "brand.p3": {
+    de: "Platzhaltertext. Schließen Sie mit einem Satz darüber, für wen die Marke gedacht ist und warum sie in die Auswahl des Showrooms gehört.",
+    en: "Placeholder copy. Close with a line about who the brand is for and why it belongs in the showroom selection.",
+  },
+
+  "dates.d1.time":  { de: "22.–26. Jun 2026", en: "22–26 Jun 2026" },
+  "dates.d1.title": { de: "Frühjahr/Sommer 27 — Pre-Collection", en: "Spring/Summer 27 — Pre-Collection" },
+  "dates.d2.time":  { de: "06.–10. Jul 2026", en: "06–10 Jul 2026" },
+  "dates.d2.title": { de: "Frühjahr/Sommer 27 — Herrenmode", en: "Spring/Summer 27 — Menswear" },
+  "dates.d3.time":  { de: "14.–18. Sep 2026", en: "14–18 Sep 2026" },
+  "dates.d3.title": { de: "Frühjahr/Sommer 27 — Hauptkollektion", en: "Spring/Summer 27 — Main Collection" },
+  "dates.d4.time":  { de: "05.–09. Okt 2026", en: "05–09 Oct 2026" },
+  "dates.d4.title": { de: "Frühjahr/Sommer 27 — Accessoires", en: "Spring/Summer 27 — Accessories" },
+  "where.appointment": { de: "Showroom — Nach Vereinbarung", en: "Showroom — By appointment" },
+  "where.offsite":     { de: "Extern — Details auf Anfrage", en: "Off-site — Details on request" },
+
+  "about.p1": {
+    de: "Die Agentur wurde im Jahr 2010 von Gabi Heininger gegründet und wird von einem kleinen engagierten Team unterstützt.",
+    en: "The agency was founded in 2010 by Gabi Heininger and is supported by a small, dedicated team.",
+  },
+  "about.p2": {
+    de: "Wir haben Showrooms in München und Düsseldorf und vertreten ausgewählte Premium- und Luxus Brands im deutschen und österreichischen Markt.",
+    en: "We have showrooms in Munich and Düsseldorf and represent selected premium and luxury brands in the German and Austrian markets.",
+  },
+  "about.p3": {
+    de: "Unser Portfolio umfasst Schuhe, Taschen und Accessoires. Die Leidenschaft der Agentur gilt dem Besonderen – Produkte mit edgy Style, die eine Geschichte erzählen.",
+    en: "Our portfolio comprises shoes, bags, and accessories. The agency's passion is for the exceptional — products with edgy style that tell a story.",
+  },
+  "about.p4": {
+    de: "Im Mittelpunkt stehen Familienunternehmen, junge und traditionsreiche Manufakturen mit besonderen Produkten, deren Anspruch an Qualität, Design und Verarbeitung, höchsten Maßstäben entspricht.",
+    en: "At the heart of it are family businesses, young and long-established workshops with distinctive products whose standards of quality, design, and craftsmanship meet the highest benchmarks.",
+  },
+  "about.p5": {
+    de: "Wir legen großen Wert auf langfristige Partnerschaften, sowohl mit unseren Marken, als auch mit unseren Handelspartnern.",
+    en: "We place great value on long-term partnerships, both with our brands and with our retail partners.",
+  },
+  "about.p6": {
+    de: "Vertrauen, Kontinuität und ein gemeinsames Marktverständnis bilden den Kern unserer Arbeitsweise – stets mit dem Ziel, gemeinsam ein gesundes und nachhaltiges Wachstum zu erzielen.",
+    en: "Trust, continuity, and a shared understanding of the market form the core of how we work — always with the goal of achieving healthy, sustainable growth together.",
+  },
+  "about.p7": { de: "We love what we do……", en: "We love what we do……" },
+};
+
+function applyLang(lang) {
+  if (lang !== "de" && lang !== "en") lang = "de";
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const entry = I18N[el.dataset.i18n];
+    if (entry && entry[lang] != null) el.textContent = entry[lang];
+  });
+  document.querySelectorAll("[data-lang]").forEach((b) => {
+    b.classList.toggle("active", b.dataset.lang === lang);
+  });
+  try { localStorage.setItem("lang", lang); } catch (e) {}
+}
+
+document.querySelectorAll("[data-lang]").forEach((b) => {
+  b.addEventListener("click", () => applyLang(b.dataset.lang));
+});
+
+let savedLang = "de";
+try { savedLang = localStorage.getItem("lang") || "de"; } catch (e) {}
+applyLang(savedLang);

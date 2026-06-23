@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +13,17 @@
   <header class="site-header">
     <div class="container">
       <a class="logo" href="index.html">Studio Name</a>
-      <nav class="nav">
-        <a href="about.html" class="active">We Are</a>
-        <a href="dates.html">Dates</a>
-        <a href="brands.html">Brands</a>
-      </nav>
+      <div class="header-right">
+        <nav class="nav">
+          <a href="about.html" class="active" data-i18n="nav.weare">Über uns</a>
+          <a href="dates.html" data-i18n="nav.dates">Termine</a>
+          <a href="brands.html" data-i18n="nav.brands">Marken</a>
+        </nav>
+        <div class="lang-switch">
+          <button type="button" data-lang="de">DE</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
     </div>
   </header>
@@ -25,41 +31,45 @@
   <div class="backdrop" id="backdrop"></div>
   <aside class="sidebar" id="sidebar">
     <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">&times;</button>
-    <a href="about.html">We Are</a>
-    <a href="dates.html">Dates</a>
-    <a href="brands.html">Brands</a>
+    <a href="about.html" data-i18n="nav.weare">Über uns</a>
+    <a href="dates.html" data-i18n="nav.dates">Termine</a>
+    <a href="brands.html" data-i18n="nav.brands">Marken</a>
+    <div class="lang-switch sidebar-lang">
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
     <div id="sidebarBrands"></div>
   </aside>
 
   <main>
     <div class="container page-content">
-      <h1>We Are</h1>
-      <p>Die Agentur wurde im Jahr 2010 von Gabi Heininger gegründet und wird von einem kleinen engagierten Team unterstützt.</p>
+      <h1 data-i18n="nav.weare">Über uns</h1>
+      <p data-i18n="about.p1">Die Agentur wurde im Jahr 2010 von Gabi Heininger gegründet und wird von einem kleinen engagierten Team unterstützt.</p>
 
-      <p>Wir haben Showrooms in München und Düsseldorf und vertreten ausgewählte Premium- und Luxus Brands im deutschen und österreichischen Markt.</p>
+      <p data-i18n="about.p2">Wir haben Showrooms in München und Düsseldorf und vertreten ausgewählte Premium- und Luxus Brands im deutschen und österreichischen Markt.</p>
 
-      <p>Unser Portfolio umfasst Schuhe, Taschen und Accessoires. Die Leidenschaft der Agentur gilt dem Besonderen – Produkte mit edgy Style, die eine Geschichte erzählen.</p>
+      <p data-i18n="about.p3">Unser Portfolio umfasst Schuhe, Taschen und Accessoires. Die Leidenschaft der Agentur gilt dem Besonderen – Produkte mit edgy Style, die eine Geschichte erzählen.</p>
 
-      <p>Im Mittelpunkt stehen Familienunternehmen, junge und traditionsreiche Manufakturen mit besonderen Produkten, deren Anspruch an Qualität, Design und Verarbeitung, höchsten Maßstäben entspricht.</p>
+      <p data-i18n="about.p4">Im Mittelpunkt stehen Familienunternehmen, junge und traditionsreiche Manufakturen mit besonderen Produkten, deren Anspruch an Qualität, Design und Verarbeitung, höchsten Maßstäben entspricht.</p>
 
-      <p>Wir legen großen Wert auf langfristige Partnerschaften, sowohl mit unseren Marken, als auch mit unseren Handelspartnern.</p>
+      <p data-i18n="about.p5">Wir legen großen Wert auf langfristige Partnerschaften, sowohl mit unseren Marken, als auch mit unseren Handelspartnern.</p>
 
-      <p>Vertrauen, Kontinuität und ein gemeinsames Marktverständnis bilden den Kern unserer Arbeitsweise – stets mit dem Ziel, gemeinsam ein gesundes und nachhaltiges Wachstum zu erzielen.</p>
+      <p data-i18n="about.p6">Vertrauen, Kontinuität und ein gemeinsames Marktverständnis bilden den Kern unserer Arbeitsweise – stets mit dem Ziel, gemeinsam ein gesundes und nachhaltiges Wachstum zu erzielen.</p>
 
-      <p>We love what we do……</p>
+      <p data-i18n="about.p7">We love what we do……</p>
     </div>
   </main>
 
   <footer class="site-footer" id="siteFooter">
     <div class="container">
       <button class="footer-toggle" id="footerToggle" aria-expanded="false">
-        Contact us <span class="arrow">&#10095;</span>
+        <span data-i18n="footer.contact">Kontakt</span> <span class="arrow">&#10095;</span>
       </button>
       <div class="footer-detail">
         <nav class="footer-nav">
-          <a href="#">Imprint</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms &amp; Conditions</a>
+          <a href="#" data-i18n="footer.imprint">Impressum</a>
+          <a href="#" data-i18n="footer.privacy">Datenschutz</a>
+          <a href="#" data-i18n="footer.terms">AGB</a>
         </nav>
         <div class="footer-center">
           <p><a href="tel:+0000000000" class="btn-outline">+00 000 000 0000</a></p>
