@@ -26,6 +26,18 @@ body {
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
   padding-top: var(--header-h); /* clear the fixed header */
+  /* Sticky footer: keep the footer at the bottom on short pages */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  flex-shrink: 0;
 }
 
 a {
@@ -714,6 +726,16 @@ main {
 }
 
 @media (max-width: 767.98px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .tile-grid {
+    padding-left: 0; /* keep stacked tiles full-bleed on phones */
+    padding-right: 0;
+  }
+
   .header-right {
     display: none; /* nav + language switch move into the slide-in sidebar */
   }
