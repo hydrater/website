@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imprint — Agentur Heininger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">Agentur Heininger</a>
+      <div class="header-right">
+        <nav class="nav">
+          <a href="about.html" data-i18n="nav.weare">Über uns</a>
+          <a href="dates.html" data-i18n="nav.dates">Termine</a>
+          <a href="brands.html" data-i18n="nav.brands">Marken</a>
+        </nav>
+        <div class="lang-switch">
+          <button type="button" data-lang="de">DE</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    </div>
+  </header>
+
+  <div class="backdrop" id="backdrop"></div>
+  <aside class="sidebar" id="sidebar">
+    <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">&times;</button>
+    <a href="about.html" data-i18n="nav.weare">Über uns</a>
+    <a href="dates.html" data-i18n="nav.dates">Termine</a>
+    <a href="brands.html" data-i18n="nav.brands">Marken</a>
+    <div class="lang-switch sidebar-lang">
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+    <div id="sidebarBrands"></div>
+  </aside>
+
+  <main>
+    <div class="container page-content">
+      <h1 data-i18n="footer.imprint">Impressum</h1>
+
+      <h2>Information pursuant to § 5 TMG</h2>
+      <p>Gabriele Heininger<br>Commercial agency (Handelsvertretung)<br>Dreimühlenstr. 27<br>80469 München</p>
+
+      <h2>Contact</h2>
+      <p>Phone: <a href="tel:+498930658586">+49 89 306 58 58 6</a><br>Fax: +49 89 307 48 56 7<br>Email: <a href="mailto:info@agenturheininger.de">info@agenturheininger.de</a></p>
+
+      <h2>VAT</h2>
+      <p>VAT identification number pursuant to § 27a of the German VAT Act (Umsatzsteuergesetz):<br>DE199349681</p>
+
+      <h2>Liability for content</h2>
+      <p>As a service provider, we are responsible for our own content on these pages in accordance with § 7 (1) TMG and general law. According to §§ 8 to 10 TMG, however, we as a service provider are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.</p>
+      <p>Obligations to remove or block the use of information under general law remain unaffected. However, liability in this regard is only possible from the point in time at which a specific infringement becomes known. If we become aware of any such infringements, we will remove this content immediately.</p>
+
+      <h2>Liability for links</h2>
+      <p>Our website contains links to external third-party websites over whose content we have no influence. We therefore cannot accept any liability for this third-party content. The respective provider or operator of the linked pages is always responsible for their content. The linked pages were checked for possible legal violations at the time of linking. No illegal content was identifiable at the time of linking.</p>
+      <p>However, permanent monitoring of the content of linked pages is not reasonable without concrete evidence of an infringement. If we become aware of any infringements, we will remove such links immediately.</p>
+
+      <h2>Copyright</h2>
+      <p>The content and works created by the site operators on these pages are subject to German copyright law. Reproduction, editing, distribution and any kind of use outside the limits of copyright law require the written consent of the respective author or creator. Downloads and copies of this site are permitted for private, non-commercial use only.</p>
+      <p>Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is marked as such. Should you nevertheless become aware of a copyright infringement, please notify us accordingly. If we become aware of any infringements, we will remove such content immediately.</p>
+
+      <h2>Dispute resolution</h2>
+      <p>The European Commission provides a platform for online dispute resolution (ODR): <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr</a>.<br>Our email address can be found above in this imprint.</p>
+      <p>We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="siteFooter">
+    <div class="container">
+      <button class="footer-toggle" id="footerToggle" aria-expanded="false">
+        <span data-i18n="footer.contact">Kontakt</span> <span class="arrow">&#10095;</span>
+      </button>
+      <div class="footer-detail">
+        <nav class="footer-nav">
+          <a href="impressum.html" data-i18n="footer.imprint">Impressum</a>
+          <a href="#" data-i18n="footer.privacy">Datenschutz</a>
+          <a href="#" data-i18n="footer.terms">AGB</a>
+        </nav>
+        <div class="footer-center">
+          <p><a href="tel:+498930658586" class="btn-outline">+49 89 306 58 58 6</a></p>
+          <p class="small">Mobile <a href="tel:+491749623100">+49 174 96 23 100</a><br><a href="mailto:office@agenturheininger.de">office@agenturheininger.de</a></p>
+          <p class="wordmark">Agentur Heininger</p>
+          <p>Ehrengutstr. 20<br>80469 München</p>
+        </div>
+        <nav class="footer-nav right">
+          <a href="https://www.instagram.com/showroomgabiheininger/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/agenturheininger/" target="_blank" rel="noopener">Facebook</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

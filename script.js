@@ -280,9 +280,9 @@ if (siteFooter && footerToggle) {
   });
 }
 
-// ---- Language toggle (DE default / EN) ----
-// Static page text is written in German; this dictionary swaps it to English
-// when EN is chosen. The choice is shared across all pages via localStorage.
+// ---- Language toggle (EN default / DE) ----
+// Static page text is written in German; this dictionary swaps it to English,
+// the default. The choice is shared across all pages via localStorage.
 const I18N = {
   "nav.weare":  { de: "Über uns", en: "We Are" },
   "nav.dates":  { de: "Termine",  en: "Dates" },
@@ -331,10 +331,34 @@ const I18N = {
     en: "Trust, continuity, and a shared understanding of the market form the core of how we work — always with the goal of achieving healthy, sustainable growth together.",
   },
   "about.p7": { de: "We love what we do……", en: "We love what we do……" },
+
+  "showroom.title": { de: "Die Luxus-Nische", en: "The Luxury Niche" },
+  "showroom.p1": {
+    de: "Als Gabi Heininger vor rund 12 Jahren beschloss, sich mit dem eigenen Showroom selbstständig zu machen, entschied sie das aus der Erkenntnis heraus, dass die Kunden für Fashion und Schuhe bzw. Accessoires in ihren Orderrhythmen und Gewohnheiten einfach unterschiedlich ticken. „Die Order für Schuhe und Accessoires findet anders als die der Fashion Kollektion auf den Messen statt. Da kommen die Kunden, um zu schreiben. Dafür muss ich mit meinem Team einfach vor Ort sein“, sagt die Agenturinhaberin.",
+    en: "When Gabi Heininger decided around 12 years ago to go independent with her own showroom, she did so in the knowledge that buyers of fashion and of shoes and accessories simply work differently in their order rhythms and habits. “Unlike fashion collections, orders for shoes and accessories are placed at the trade fairs. That’s where customers come to write orders, so my team and I simply have to be there,” says the agency owner.",
+  },
+  "showroom.p2": {
+    de: "Mit erlesenen, größtenteils handgefertigten Produkten von Familienunternehmen und Traditionsunternehmen setzt sie in ihrem Markensortiment auf Kontinuität und eine exklusive Nische, in der das einzelne Produkt im Mittelpunkt steht.",
+    en: "With exquisite, largely handmade products from family-run and long-established companies, her brand portfolio relies on continuity and an exclusive niche in which the individual product takes centre stage.",
+  },
+  "showroom.p3": {
+    de: "Sie ist ständig auf der Suche nach neuen, exklusiven Produkten, um ihren Kunden immer wieder aufs neue ein Einkaufserlebnis zu bieten. Dabei verliert sie nie den Fokus darauf, dass die Produkte eine Geschichte erzählen und Qualität sowie Verarbeitung auf höchstem handwerklichem Niveau entstehen.",
+    en: "She is constantly searching for new, exclusive products to offer her customers a fresh shopping experience time and again — never losing sight of products that tell a story and whose quality and workmanship meet the highest standards of craftsmanship.",
+  },
+
+  "visit.title": { de: "Kommt vorbei!", en: "Come and visit!" },
+  "visit.p1": {
+    de: "Neben der wunderschönen Isar finden Sie unseren Showroom in der Ehrengutstraße. Im vielfältigen Dreimühlenviertel, direkt am Roecklplatz werde ich Sie gerne empfangen.",
+    en: "Our showroom is on Ehrengutstraße, close to the beautiful Isar river. I look forward to welcoming you in the vibrant Dreimühlenviertel, right on Roecklplatz.",
+  },
+  "visit.p2": {
+    de: "Das beliebte Viertel besteht aus einem Mix aus Agenturen, Künstlern, Ateliers und einer Vielzahl an Restaurants.",
+    en: "This popular neighbourhood is a mix of agencies, artists, studios and a wide range of restaurants.",
+  },
 };
 
 function applyLang(lang) {
-  if (lang !== "de" && lang !== "en") lang = "de";
+  if (lang !== "de" && lang !== "en") lang = "en";
   document.documentElement.lang = lang;
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const entry = I18N[el.dataset.i18n];
@@ -343,13 +367,14 @@ function applyLang(lang) {
   document.querySelectorAll("[data-lang]").forEach((b) => {
     b.classList.toggle("active", b.dataset.lang === lang);
   });
-  try { localStorage.setItem("lang", lang); } catch (e) {}
+  try { localStorage.setItem("siteLang", lang); } catch (e) {}
 }
 
 document.querySelectorAll("[data-lang]").forEach((b) => {
   b.addEventListener("click", () => applyLang(b.dataset.lang));
 });
 
-let savedLang = "de";
-try { savedLang = localStorage.getItem("lang") || "de"; } catch (e) {}
+// New key: the old "lang" key auto-saved "de" for every past visitor, which would override the EN default
+let savedLang = "en";
+try { savedLang = localStorage.getItem("siteLang") || "en"; } catch (e) {}
 applyLang(savedLang);
