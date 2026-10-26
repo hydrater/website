@@ -1,24 +1,81 @@
 // ---- Brand data: edit this list to change tiles, menus and brand pages ----
+// `text` is English only (no German copy yet), so it shows in both languages.
 const BRANDS = [
-  { slug: "atelier-novella", name: "Atelier Novella", seed: "tile01" },
-  { slug: "bruno-marek", name: "Bruno Marek", seed: "tile02" },
-  { slug: "casa-lumen", name: "Casa Lumen", seed: "tile03" },
-  { slug: "delft-daughters", name: "Delft & Daughters", seed: "tile04" },
-  { slug: "eastfield", name: "Eastfield", seed: "tile05" },
-  { slug: "ferand", name: "Férand", seed: "tile06" },
-  { slug: "grau-studio", name: "Grau Studio", seed: "tile07" },
-  { slug: "grau-studio-men", name: "Grau Studio Men", seed: "tile08" },
-  { slug: "hollis-co", name: "Hollis & Co", seed: "tile09" },
-  { slug: "ines-marlowe", name: "Ines Marlowe", seed: "tile10" },
-  { slug: "junipero", name: "Junipero", seed: "tile11" },
-  { slug: "kessler-knits", name: "Kessler Knits", seed: "tile12" },
-  { slug: "lindqvist", name: "Lindqvist", seed: "tile13" },
-  { slug: "mirelle", name: "Mirelle", seed: "tile14" },
-  { slug: "north-vale", name: "North & Vale", seed: "tile15" },
-  { slug: "oro-bianco", name: "Oro Bianco", seed: "tile16" },
-  { slug: "petra-lund", name: "Petra Lund", seed: "tile17" },
-  { slug: "quill", name: "Quill", seed: "tile18" },
-  { slug: "rovere", name: "Rovere", seed: "tile19" },
+  {
+    slug: "inuikii", name: "Inuikii", seed: "tile01",
+    text: [
+      "A Swiss family owned brand combining contemporary footwear design with functionality and comfort.",
+      "Founded in 2013 by Cinzia Maag and her sons Danilo and Alessio, the brand has established a distinctive identity.",
+      "Bold silhouettes, premium materials and exceptional details define its collections. Alongside its iconic winter boots, the range includes statement sneakers and contemporary summer styles.",
+      "INUIKII represents individuality, modern design and an unmistakable aesthetic.",
+    ],
+  },
+  {
+    slug: "officine-creative", name: "Officine Creative", seed: "tile02",
+    text: [
+      "OFFICINE CREATIVE combines Italian craftsmanship with a distinctive, contemporary design philosophy.",
+      "The finest leathers, traditional techniques and innovative finishing processes give every shoe its individual character. The collections embody effortless elegance, exceptional quality and meticulous attention to detail, distinctive washes and unique finishes.",
+      "OFFICINE CREATIVE represents authentic luxury, individuality and Italian shoemaking at its finest.",
+    ],
+  },
+  {
+    slug: "puraai", name: "Puraai", seed: "tile03",
+    text: [
+      "PURAAI combines Italian design with a modern, conscious lifestyle.",
+      "The vegan, sustainable sneaker collections are defined by creative colour combinations, distinctive silhouettes and an individual fashion attitude. Innovative materials and a thoughtful approach to resources complement the brand’s contemporary design philosophy.",
+      "PURAAI represents creative freedom, individuality and sneakers with a distinctive identity.",
+    ],
+  },
+  {
+    slug: "roberto-festa", name: "Roberto Festa", seed: "tile04",
+    text: [
+      "ROBERTO FESTA was founded in 2008 and embodies Italian shoemaking tradition, feminine elegance and a refined sense of contemporary fashion.",
+      "The collections combine sophisticated silhouettes, premium materials and distinctive details with effortless appeal. From elegant pumps to fashionable flats and statement styles, each design offers a modern interpretation of timeless femininity.",
+      "ROBERTO FESTA represents Italian elegance with a distinctive fashion identity.",
+    ],
+  },
+  {
+    slug: "hunter", name: "Hunter", seed: "tile05",
+    text: [
+      "Since 1856, HUNTER has stood for British heritage, iconic design and uncompromising functionality.",
+      "Its legendary Wellington boots have evolved from practical outdoor essentials into international fashion statements. Collaborations with Ganni, as well as links to fashion icons such as Kate Moss, Hailey Bieber, underline the brand’s fashion-forward character.",
+      "HUNTER combines authentic British identity with a modern lifestyle – from its iconic Original Boots to contemporary footwear and outdoor styles.",
+    ],
+  },
+  {
+    slug: "flabelus", name: "Flabelus", seed: "tile06",
+    text: [
+      "FLABELUS was founded in 2020 by the Spanish entrepreneur Beatriz de los Mozos, with a vision to reinterpret traditional Spanish espadrilles.",
+      "The collections feature distinctive designs, beautiful materials, vibrant colours and playful details. Each style brings together comfort, creativity and an unmistakable aesthetic.",
+      "This huge popularity is also reflected in the brand’s rapid international expansion: with numerous store openings in European fashion capitals such as Paris, London, Milan or Berlin the brand is continually expanding its presence.",
+      "FLABELUS represents individuality, effortless charm and a unique blend of tradition and contemporary fashion.",
+    ],
+  },
+  {
+    slug: "a-point-etc", name: "A Point Etc", seed: "tile07",
+    text: [
+      "A POINT ETC is a Parisian design label founded in 2018 by the Japanese designer Atsuko. The brand combines French design with traditional craftsmanship from Madagascar.",
+      "Crafted from raffia, the bags are defined by natural materials, intricate weaving techniques and a relaxed, contemporary aesthetic. Each creation brings together artisanal character, effortless French elegance and a distinctive sense of style.",
+      "A POINT ETC represents authentic accessories, summer sophistication and individuality.",
+    ],
+  },
+  {
+    slug: "shouia", name: "Shouïa", seed: "tile08",
+    text: [
+      "SHOUÏA, the Parisian accessories label, combines nostalgic influences from the 80s and 90s with creative, modern design. Colourful bag charms, key rings and beautiful brooches.",
+      "Unique materials, creative details and a refined sense of current trends define the collections. Each accessory adds a stylish accent and brings an individual, fashionable touch to any look.",
+      "SHOUÏA combines creativity and individuality.",
+    ],
+  },
+  {
+    slug: "cashimar", name: "Cashimar", seed: "tile09",
+    text: [
+      "CASHIMAR – Cashmere with a Fashion Twist.",
+      "The finest Cariaggi cashmere and premium alpaca meet contemporary design and a distinctive sense of style. CASHIMAR stands for luxurious accessories, expressive details and modern elegance.",
+      "From effortless beanies and feminine hats to sophisticated scarves, each piece combines exceptional softness with individual character, adding a distinctive touch to every look.",
+      "Your style. Your softness. Your CASHIMAR.",
+    ],
+  },
 ];
 
 function brandImage(brand) {
@@ -75,6 +132,8 @@ function currentBrand() {
 
 function fillBrand(brand) {
   document.getElementById("brandTitle").textContent = brand.name;
+  const brandText = document.getElementById("brandText");
+  if (brandText) brandText.innerHTML = brand.text.map((p) => `<p>${p}</p>`).join("");
   document.getElementById("brandList").innerHTML = BRANDS.map(
     (b) =>
       `<a href="#${b.slug}" class="${b.slug === brand.slug ? "current" : ""}">${b.name}</a>`
@@ -235,19 +294,6 @@ const I18N = {
   "footer.terms":   { de: "AGB",         en: "Terms & Conditions" },
 
   "insta.line": { de: "Folgt uns auf Instagram", en: "Follow Us On Instagram" },
-
-  "brand.p1": {
-    de: "Platzhaltertext. Stellen Sie hier die Marke vor – ihre Gründerin oder ihren Gründer, das Gründungsjahr und die Idee dahinter. Zwei, drei Sätze geben den Ton an, bevor es ins Detail geht.",
-    en: "Placeholder copy. Introduce the brand here — its founder, the year it started, and the idea behind it. Two or three sentences set the tone before going into detail.",
-  },
-  "brand.p2": {
-    de: "Platzhaltertext. Beschreiben Sie die Kollektionen: die Materialien, die Kategorien, die gestalterische Handschrift, die die Marke unverwechselbar macht, und wo die Stücke gefertigt werden.",
-    en: "Placeholder copy. Describe the collections: the materials, the categories, the design signature that makes the brand recognizable, and where the pieces are produced.",
-  },
-  "brand.p3": {
-    de: "Platzhaltertext. Schließen Sie mit einem Satz darüber, für wen die Marke gedacht ist und warum sie in die Auswahl des Showrooms gehört.",
-    en: "Placeholder copy. Close with a line about who the brand is for and why it belongs in the showroom selection.",
-  },
 
   "dates.d1.time":  { de: "22.–26. Jun 2026", en: "22–26 Jun 2026" },
   "dates.d1.title": { de: "Frühjahr/Sommer 27 — Pre-Collection", en: "Spring/Summer 27 — Pre-Collection" },
